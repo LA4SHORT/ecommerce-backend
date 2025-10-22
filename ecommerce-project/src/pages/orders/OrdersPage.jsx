@@ -1,14 +1,14 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { formatMoney } from '../utils/money';
+import { formatMoney } from '../../utils/money';
 import { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router';
-import { Header } from '../components/Header';
-import CartIcon from '../assets/images/icons/cart-icon.png';
-import SearchIcon from '../assets/images/icons/search-icon.png';
-import LogoWhite from '../assets/images/logo-white.png';
-import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
-import BuyAgainIcon from '../assets/images/icons/buy-again.png';
+import { Header } from '../../components/Header';
+import CartIcon from '../../assets/images/icons/cart-icon.png';
+import SearchIcon from '../../assets/images/icons/search-icon.png';
+import LogoWhite from '../../assets/images/logo-white.png';
+import MobileLogoWhite from '../../assets/images/mobile-logo-white.png';
+import BuyAgainIcon from '../../assets/images/icons/buy-again.png';
 import './OrdersPage.css';
 
 export function OrdersPage({ cart }) {
