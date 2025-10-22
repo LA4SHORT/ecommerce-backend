@@ -6,6 +6,7 @@ import './HomePage.css';
 
 export function HomePage() {
     const [products, setProducts] = useState([])
+    const [cart, setCart] = useState([]);
 
 
     useEffect(() => {
@@ -13,6 +14,11 @@ export function HomePage() {
           .then((response) => {
            setProducts(response.data);
         });
+
+        axios.get('http://localhost:3000/api/cart-items')
+          .then((response) => {
+            setCart(response.data);
+          })
     }, []);
 
 
@@ -21,7 +27,7 @@ export function HomePage() {
             <title>Ecommerce Project</title>
             <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
 
-            <Header />
+            <Header cart={cart} />
 
 
             <div className="home-page">
