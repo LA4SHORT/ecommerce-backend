@@ -9,7 +9,16 @@ import LogoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import './TrackingPage.css';
 
-export function TrackingPage({ cart }) {
+export function TrackingPage({ cart, loadCart }) {
+    const [search, setSearch] = useState('');
+
+    const updateSearchInput = (event) => {
+        setSearch(event.target.value);
+    };
+
+    const searchProducts = () => {
+        console.log(search);
+    }
     const { orderId, productId } = useParams();
     const [order, setOrder] = useState(null);
 
@@ -43,12 +52,18 @@ export function TrackingPage({ cart }) {
   const isShipped = deliveryPercent >= 33 && deliveryPercent < 100;
   const isDelivered = deliveryPercent === 100;
 
+  let totalQuantity = 0;
+
+    cart.forEach((cartItem) => {
+        totalQuantity += cartItem.quantity
+    })
+
     return (
         <>
             <title>Tracking</title>
                             <link rel="icon" type="image/svg+xml" href="tracking-favicon.png" />
             
-                        <Header cart={cart} />
+                        <Header cart={cart} loadCart={loadCart} />
                         
             <div className="header">
                 <div className="left-section">
@@ -61,9 +76,11 @@ export function TrackingPage({ cart }) {
                 </div>
 
                 <div className="middle-section">
-                    <input className="search-bar" type="text" placeholder="Search" />
+                    <input className="search-bar" type="text" placeholder="Search"
+                     value={search} onChange={updateSearchInput} />
 
-                    <button className="search-button">
+                    <button className="search-button"
+                    onClick={searchProducts}>
                         <img className="search-icon" src={SearchIcon} />
                     </button>
                 </div>
@@ -76,7 +93,7 @@ export function TrackingPage({ cart }) {
 
                     <Link className="cart-link header-link" to="/checkout">
                         <img className="cart-icon" src={CartIcon} />
-                        <div className="cart-quantity">3</div>
+                        <div className="cart-quantity">{totalQuantity}</div>
                         <div className="cart-text">Cart</div>
                     </Link>
                 </div>
