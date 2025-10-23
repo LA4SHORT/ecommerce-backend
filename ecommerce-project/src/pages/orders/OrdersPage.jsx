@@ -54,7 +54,7 @@ export function OrdersPage({ cart }) {
 
                     <Link className="cart-link header-link" to="/checkout">
                         <img className="cart-icon" src={CartIcon} />
-                        <div className="cart-quantity">3</div>
+                        <div className="cart-quantity">{cart.length}</div>
                         <div className="cart-text">Cart</div>
                     </Link>
                 </div>
